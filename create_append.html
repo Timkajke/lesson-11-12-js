@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="parent"></div>
+    <script>
+        const parentDiv = document.querySelector('#parent');
+        const p = document.createElement('p'); // создаём тег
+        p.innerText = 'Меня сгенерировали';
+        parentDiv.appendChild(p); // добавляем на страницу в div
+    </script>
+
+    <hr>
+
+    <!-- Генерация списка -->
+
+    <ul id="parentUl"></ul>
+    <script>
+        const parentUl = document.querySelector('#parentUl');
+        let li = null;
+        for (let i = 1; i <= 10; i++) {
+            li = document.createElement('li');
+            li.innerText = `Элемент списка ${i}`;
+            parentUl.appendChild(li);
+        }
+        const lastLi = document.createElement('li');
+        lastLi.innerText = 'Я последний';
+        parentUl.appendChild(lastLi);
+        // parentUl.removeChild(lastLi); // Удаляем элемент списка
+        lastLi.remove(); // или удалить можно через метод remove() только обращение идёт к элементу
+
+        // изменить конкретный элемент массива
+        const selectedLi = parentUl.querySelectorAll('li');
+        selectedLi[3].innerText = 'Меня поменяли!';
+    </script>
+
+</body>
+</html>

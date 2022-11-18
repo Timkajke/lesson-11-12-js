@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p-style {
+            color: red;
+            border: 1px solid black;
+        }
+        .basic {
+            font-size: 26px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+    <!-- Работа с атрибутами -->
+
+<body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, accusamus.</p>
+    <input type="button" onclick="changeP()" value="Change P">
+    <script>
+        function changeP() {
+            const p = document.querySelector('p');
+            p.setAttribute('class', 'p-style');
+            console.log(p.getAttribute('class')); // получили p-style в консоли
+            p.removeAttribute('class');
+            console.log(p.hasAttribute('class')) // false, потому что в предыдущей строке мы его удалили
+        }
+    </script>
+
+    <!-- Работа с атрибутом class -->
+
+    <div class="basic">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime, omnis.</div>
+    <script>
+    // class list - позволяет выполнять манипуляции с атрибутом class
+    // т.е. удалять частично, проверять, добавлять
+    const basic = document.querySelector('.basic');
+    basic.classList.add('p-style');
+    // contains - проверяет наличие указанного класса (true/false)
+    // toggle - добавляет класс, если его нет, НО удаляет, если класс есть
+    basic.classList.toggle('basic2');
+    // remove - удаляет указанный класс
+    basic.classList.remove('basic');
+    </script>
+
+<input id="txt" type="text">
+    <button onclick="сlick()"></button>
+    <script>
+        function сlick(){
+            txt.hasAttribute('disabled') ? txt.removeAttribute("disabled") : 
+            txt.setAttribute('disabled', 'true');
+        }
+    </script>
+
+</body>
+
+</html>

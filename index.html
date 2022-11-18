@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            background-color: navy;
+            height: 50px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Способы обработки событий: -->
+
+    <!-- Способ 1 -->
+    <div onclick="alert('Theyve clicked on me! 1')"></div>
+
+    <hr>
+
+    <!-- Способ 2 (Лучше не использовать, он устарел) -->
+    <div id="clickableDiv"></div>
+    <script>
+        clickableDiv.onclick = () => {
+            alert('Theyve clicked on me! 2');
+        }
+    </script>
+
+    <hr>
+
+    <!-- Способ 3 -->
+    <!-- Навешивание слушателя на элемент. Является приоритетным -->
+    <div id="clickableDiv2"></div>
+    <script>
+        clickableDiv2.addEventListener('click', () => {
+            alert('Theyve clicked on me! 3');
+        });
+    </script>
+
+    <hr>
+
+    <!-- Пример с созданием/удалением слушателя -->
+    <span class="btns">
+        <input type="button" value="Button 1">
+        <input type="button" value="Button 2">
+        <input type="button" value="Button 3">
+        <input type="button" value="Button 4">
+        <input type="text" value="Field 1">
+    </span>
+    <script>
+        // В NodeList будут только type="button" (кнопки)
+        const buttons = document.querySelectorAll('.btns > input[type="button"]');
+        // console.log(buttons);
+        for (const button of buttons) {
+            // button.addEventListener('click', () => { // стрелочная функция вместо handleBtn
+            //     alert(this.value); // выведется undefined
+            //     // причина этого в стрелочной функции, потому что
+            //     // в них отсутствует контекст
+            button.addEventListener('click', handleBtn);
+        }
+        function handleBtn() {
+            alert(this.value); // выведется Button 1 и т.д.
+            this.removeEventListener('click', handleBtn); // удаляем слушателя с нажатого элемента
+        }
+    </script>
+
+    <hr>
+
+</body>
+
+</html>
